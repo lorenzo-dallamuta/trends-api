@@ -15,6 +15,7 @@ def list_topics(*, key: str = '', geo: str = 'IT', wait: int = 3, full: bool = T
     wait: sets the time in seconds that the driver should wait for the page to load the lists' container elements
     full: if true sets that the search will keep going as far there is a "next results" button to click
     """
+    print(key, geo, wait, full)
     firefoxOptions = webdriver.FirefoxOptions()
     firefoxOptions.add_argument('--headless')
     topics = []
