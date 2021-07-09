@@ -2,6 +2,9 @@ version: '3.8'
 
 services:
 
+    # gecko:
+    #     image: instrumentisto/geckodriver
+
     web:
         build: ./project
         ports:
@@ -9,5 +12,7 @@ services:
         command: uvicorn main:app --host 0.0.0.0 --reload
         volumes:
             - ./project:/usr/src/app
+        # depends_on: 
+        #     - gecko
 
 
