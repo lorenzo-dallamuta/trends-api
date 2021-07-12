@@ -1,3 +1,6 @@
+## redis
+*.rdb
+
 ## fastapi
 
 .idea

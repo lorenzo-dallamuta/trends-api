@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  trends:
+    image: trends
+    build:
+      context: .
+      dockerfile: ./project/Dockerfile
+    command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 -m uvicorn project.main:app --host 0.0.0.0 --port 8004"]
+    ports:
+      - 8004:8004
+      - 5678:5678
