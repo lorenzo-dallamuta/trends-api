@@ -1,19 +1,11 @@
-from datetime import datetime
+from datetime import date
 import logging
 from typing import Optional
 
 from fastapi import FastAPI
 from starlette.responses import JSONResponse
-from worker import create_query, celery
-
-date = datetime.utcnow()
-# TODO: append with datetime prefix
-logging.basicConfig(
-    filename=f'logs/{date.strftime("%y%m%d_%H%M%S")}.log',
-    encoding='utf-8',
-    level=logging.INFO
-)
-
+from worker import create_query
+from celery.result import AsyncResult
 
 app = FastAPI()
 
@@ -38,6 +30,7 @@ async def send_trend_query(
 
 @app.get('/trend/')
 async def get_trend_result(query_id):
-    task_result = celery.AsyncResult(query_id)
+    task_result = AsyncResult(query_id)
     if task_result.status != 'PENDING':
         return JSONResponse(task_result.result)
+    return task_result.status

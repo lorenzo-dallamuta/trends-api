@@ -1,7 +1,6 @@
 import logging
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -14,6 +13,8 @@ def list_topics(*, key: str = '', geo: str = 'IT', wait: int = 3, full: bool = T
     geo: sets the locality for the query
     wait: sets the time in seconds that the driver should wait for the page to load the lists' container elements
     full: if true sets that the search will keep going as far there is a "next results" button to click
+
+    note: running this in a celery worker means the logs go to the celery log file
     """
     print(key, geo, wait, full)
     firefoxOptions = webdriver.FirefoxOptions()
