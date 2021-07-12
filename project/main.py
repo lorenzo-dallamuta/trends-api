@@ -1,7 +1,4 @@
-from datetime import date
-import logging
 from typing import Optional
-
 from fastapi import FastAPI
 from starlette.responses import JSONResponse
 from worker import create_query
